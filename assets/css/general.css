@@ -1,0 +1,5 @@
+@layer utilities {
+  .secondary-text {
+    @apply text-slate-700 dark:text-slate-400;
+  }
+}
