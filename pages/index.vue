@@ -41,6 +41,12 @@
       <template #message="slotProps">
         <div>
           <p>{{ slotProps.message.message }}</p>
+          <InputOtp
+            v-model="otp"
+            class="mt-2 w-full"
+            :length="6"
+            integer-only
+          />
         </div>
       </template>
     </ConfirmDialog>
@@ -59,13 +65,16 @@ const toast = useToast();
 // TODO: Try PrimeVue Forms with Zod validation
 const username = ref("");
 const password = ref("");
+const otp = ref();
 
 function showOtpConfirm() {
   confirm.require({
     header: "OTP Verification",
     message: "Please enter the OTP sent to your email",
+    acceptClass: "w-full",
+    rejectClass: "w-full",
     acceptProps: {
-      label: "Save",
+      label: "Submit",
     },
     rejectProps: {
       label: "Cancel",
@@ -73,10 +82,11 @@ function showOtpConfirm() {
       outlined: true,
     },
     accept: () => {
+      // TODO: Add OTP verification logic
       toast.add({
         severity: "success",
         summary: "Success",
-        detail: "OTP verified",
+        detail: "OTP verified. Welcome!",
         life: 3000,
       });
       router.push({

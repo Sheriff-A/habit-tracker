@@ -17,4 +17,11 @@ export default defineNuxtConfig({
     },
     autoImport: true,
   },
+  postcss: {
+    plugins: {
+      "postcss-import": {},
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
 });
